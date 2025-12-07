@@ -202,25 +202,6 @@ echo'Résultat : '.$r;
 
 ---
 
-## Bonus : automatiser PHP CS Fixer avec un Git Hook
-
-dans `.git/hooks/pre-commit` :
-
-```bash
-#!/bin/sh
-vendor/bin/php-cs-fixer fix --quiet
-```
-
-Rendre le hook exécutable :
-
-```bash
-chmod +x .git/hooks/pre-commit
-```
-
-Votre code sera automatiquement corrigé **avant chaque commit**.
-
----
-
 ## Conclusion
 
 Avec ce TP, vous savez maintenant :
