@@ -13,9 +13,25 @@ Ce document explique **à quoi sert PHP CS Fixer**, **comment l’installer**, *
 * éviter les erreurs de style (indentation, espaces, accolades, etc.),
 * respecter les normes standards comme **PSR-12**.
 
+**Rappel rapide : Qu’est‑ce que PSR‑12 ?**
+
+PSR‑12 est la norme officielle de style de code PHP. Elle définit comment organiser, indenter et écrire ton code pour qu’il soit propre, lisible et cohérent entre tous les projets.
+
+Elle impose notamment :
+
+l’organisation des imports (use) et du namespace,
+
+les accolades placées sur la ligne suivante,
+
+des espaces cohérents autour des opérateurs et des mots‑clés,
+
+un style moderne compatible avec PHP 7/8.
+
+PHP‑CS‑Fixer applique automatiquement cette norme lorsque tu utilises la règle @PSR12.
+
 ---
 
-## 📦 Installation de PHP CS Fixer
+## Installation de PHP CS Fixer
 
 ### ➤ 1. Installer via Composer
 
@@ -35,9 +51,9 @@ Vous devriez voir la version afficher.
 
 ---
 
-## ⚙️ Configuration : créer le fichier `.php-cs-fixer.php`
+## Configuration : séléctionner le fichier `.php-cs-fixer.php`
 
-À la racine de votre projet, créez ce fichier :
+À la racine de votre projet, séléctionner ce fichier :
 
 ```php
 <?php
@@ -64,12 +80,67 @@ Ce fichier définit :
 
 ---
 
-## 🧪 Démonstration : Corriger un fichier PHP
+## Démonstration : Corriger un fichier PHP
 
-### Exemple avant correction :
+### Voici le code du fichier `mauvais_code.php` :
 
 ```php
-<?php class test{public function run(){echo "Hello";}}
+<?php
+
+// ❌ Namespace et "use" ne doivent jamais être sur la même ligne.
+namespace RoyaumeChampi; use DateTime;
+
+class MarioAdventure {
+
+    // ❌ Mauvaise syntaxe d'array + espaces incohérents.
+    public $pieces = array(1 ,2 ,3   );
+
+    // ❌ Espacement incorrect autour du "="
+    private  $vie=3;
+
+    function __construct( ){
+        // ❌ "Pieces" avec une majuscule : propriété incorrecte.
+        $this->Pieces[] =4;
+
+        // ❌ Propriété "nom" inexistante dans la classe.
+        $this->nom = 'Mario';
+    }
+
+    public function sauter( $hauteur , $force  ){
+
+        // ❌ Pas d'espace après echo.
+        // ❌ L'opération $hauteur * $force est ambiguë sans parenthèses.
+        echo"Mario saute de ".$hauteur*$force." metres !"; }
+
+    public function prendreChampi ( $type){
+
+        // ❌ Espaces et accolades mal placées.
+        // ❌ Comparaison avec == au lieu de ===.
+        if($type=="rouge"){return"Mario gagne 1 vie";} else{return"Mario devient plus grand";} }
+
+    public function entrerDansTuyau( $destination){
+
+        // ❌ Même problème : accolades et espaces mal foutus.
+        if($destination=="castle"){
+            return"Bienvenue dans le chateau de Bowser !"; }else{ return "Mario arrive dans ".$destination; }
+    }
+
+}
+
+// ❌ Instanciation sans parenthèses (mauvaise pratique).
+$m = new MarioAdventure;
+
+// ❌ Appels tout sur une seule ligne → illisible.
+$m->sauter(2 ,5);
+
+// ❌ Paramètre mal espacé + mauvaise indentation.
+$r = $m->prendreChampi("rouge");
+
+// ❌ Echo collé au texte.
+echo"Résultat : ".$r;
+
+?>
+
 ```
 
 ### Commande pour corriger :
@@ -83,18 +154,55 @@ vendor/bin/php-cs-fixer fix
 ```php
 <?php
 
-class Test
+namespace RoyaumeChampi;
+use DateTime;
+
+class MarioAdventure
 {
-    public function run()
+    public $pieces = [1 ,2 ,3   ];
+    private $vie = 3;
+
+    public function __construct()
     {
-        echo "Hello";
+        $this->Pieces[] = 4;
+        $this->nom = 'Mario';
     }
+
+    public function sauter($hauteur, $force)
+    {
+        echo'Mario saute de '.$hauteur * $force.' metres !';
+    }
+
+    public function prendreChampi($type)
+    {
+        if ($type == 'rouge') {
+            return'Mario gagne 1 vie';
+        } else {
+            return'Mario devient plus grand';
+        }
+    }
+
+    public function entrerDansTuyau($destination)
+    {
+        if ($destination == 'castle') {
+            return'Bienvenue dans le chateau de Bowser !';
+        } else {
+            return 'Mario arrive dans '.$destination;
+        }
+    }
+
 }
+
+$m = new MarioAdventure();
+$m->sauter(2, 5);
+$r = $m->prendreChampi('rouge');
+echo'Résultat : '.$r;
+
 ```
 
 ---
 
-## 🧰 Intégration avec PhpStorm
+## Intégration avec PhpStorm
 
 ### ➤ 1. Aller dans les paramètres
 
@@ -121,11 +229,10 @@ $ProjectFileDir$
 ### ➤ 3. Utilisation dans PhpStorm
 
 * Clic droit sur un fichier → **External Tools → PHP CS Fixer**
-* Ou créer un raccourci clavier : **Settings > Keymap**
 
 ---
 
-## 🚀 Bonus : automatiser PHP CS Fixer avec un Git Hook
+## Bonus : automatiser PHP CS Fixer avec un Git Hook
 
 dans `.git/hooks/pre-commit` :
 
@@ -144,7 +251,7 @@ Votre code sera automatiquement corrigé **avant chaque commit**.
 
 ---
 
-## 📝 Conclusion
+## Conclusion
 
 Avec ce TP, vous savez maintenant :
 
