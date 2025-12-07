@@ -202,36 +202,6 @@ echo'Résultat : '.$r;
 
 ---
 
-## Intégration avec PhpStorm
-
-### ➤ 1. Aller dans les paramètres
-
-**File > Settings > Tools > External Tools**
-
-### ➤ 2. Ajouter PHP CS Fixer
-
-Cliquez sur **+** puis configurez :
-
-* **Name** : PHP CS Fixer
-* **Program** : `vendor/bin/php-cs-fixer.php` (ou le chemin complet)
-* **Arguments** :
-
-```
-fix $FileDir$/$FileName$
-```
-
-* **Working directory** :
-
-```
-$ProjectFileDir$
-```
-
-### ➤ 3. Utilisation dans PhpStorm
-
-* Clic droit sur un fichier → **External Tools → PHP CS Fixer**
-
----
-
 ## Bonus : automatiser PHP CS Fixer avec un Git Hook
 
 dans `.git/hooks/pre-commit` :
@@ -261,6 +231,6 @@ Avec ce TP, vous savez maintenant :
 * comment l’intégrer dans PhpStorm,
 * comment automatiser les corrections.
 
-Votre projet PHP sera désormais **propre, moderne et cohérent** ! 💪
+Votre projet PHP sera désormais **propre, moderne et cohérent** !
 
 ---
