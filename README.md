@@ -259,7 +259,7 @@ return $b;}}
 
 ### Questions :
 
-### 1. Repérez au moins 3 erreurs de style.
+### 1. Repérez au moins 3 erreurs ne respectant pas PSR12.
 
 ### 2. Réécrivez une version corrigée selon @PSR12.
 
