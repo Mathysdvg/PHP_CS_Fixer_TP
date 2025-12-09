@@ -201,7 +201,69 @@ echo'Résultat : '.$r;
 ```
 
 ---
+## Exercices
+---
+## **Exercice 1 – QCM**
 
+Répondez aux questions suivantes :
+
+### 1) À quoi sert PHP CS Fixer ?
+a) Améliorer les performances  
+b) **Corriger automatiquement le style du code**  
+c) Trouver les failles  
+d) Compiler le code
+
+### 2) Quel preset applique la norme officielle PHP ?
+a) @Symfony  
+b) **@PSR12**  
+c) @Doctrine  
+d) @PER
+
+### 3) Que fait cette commande ?
+```bash
+vendor/bin/php-cs-fixer fix --dry-run --diff
+```
+a) Corrige les fichiers  
+b) **Affiche les corrections possibles sans les appliquer**  
+c) Supprime les fichiers incorrects  
+d) Ne vérifie que les imports
+
+### 4) Où placer le fichier `.php-cs-fixer.php` ?
+a) Dans vendor/  
+b) Dans .git/  
+c) **À la racine du projet**  
+d) N'importe où
+
+### 5) À quoi sert `no_unused_imports` ?
+a) Empêcher les exceptions  
+b) **Supprimer les imports non utilisés**  
+c) Convertir array() en []  
+d) Renommer les classes
+
+---
+
+## **Exercice 2 – Analyse d’un extrait avant/après**
+
+Analysez ce code :
+
+```php
+<?php
+namespace App; use DateTime;  class Test  {
+
+public function run( $a,$b ){
+if($a>$b){
+return $a;}else{
+return $b;}}
+}
+```
+
+### Questions :
+
+### 1. Repérez au moins 3 erreurs de style.
+
+### 2. Réécrivez une version corrigée selon @PSR12.
+
+---
 ## Conclusion
 
 Avec ce TP, vous savez maintenant :
